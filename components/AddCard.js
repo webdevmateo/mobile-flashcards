@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, TextInput, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import TextInputComponent from './TextInputComponent'
 
 class AddCard extends Component {
 
@@ -8,28 +9,38 @@ class AddCard extends Component {
     answerText: '',
   }
 
-  handleChange = (text) => {
-    alert(text)
+  handleChange = (id, value) => {
+    id === 'question'
+    ? this.setState({
+      questionText: value
+    })
+    : this.setState({
+      answerText: value
+    })
   }
 
   submit = () => {
-    alert('working')
+    console.log(JSON.stringify(this.state))
+    this.setState({
+      questionText: '',
+      answerText: '',
+    })
   }
 
   render() {
     return (
       <View>
-        <TextInput
+        <TextInputComponent
           id='question'
           placeholder='Question'
-          onChangeText={(text) => this.handleChange(text)}
           value={this.state.questionText}
+          onChangeText={this.handleChange}
         />
-        <TextInput
+        <TextInputComponent
           id='Answer'
           placeholder='Answer'
-          onChangeText={this.handleChange}
           value={this.state.answerText}
+          onChangeText={this.handleChange}
         />
         <TouchableOpacity
           onPress={this.submit}
