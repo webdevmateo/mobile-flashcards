@@ -4,12 +4,12 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 class AddDeck extends Component {
 
   addDeck = () => {
-    const { goBack } = this.props.navigation
+    const { navigate } = this.props.navigation
 
     //Todo: Add deck to AsyncStorage
     //Todo: Add deck to store
 
-    goBack()
+    navigate('DeckContainer')
   }
 
   render() {
