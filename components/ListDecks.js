@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import DeckContainer from './DeckContainer'
+import { TouchableOpacity, Text, StyleSheet } from 'react-native'
+import Deck from './Deck'
 
 class ListDecks extends Component {
+
   render() {
+    
     return (
-      <DeckContainer />
+      <Deck />
     )
   }
 }

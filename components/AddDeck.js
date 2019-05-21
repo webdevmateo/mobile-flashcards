@@ -2,6 +2,16 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 
 class AddDeck extends Component {
+
+  addDeck = () => {
+    const { goBack } = this.props.navigation
+
+    //Todo: Add deck to AsyncStorage
+    //Todo: Add deck to store
+
+    goBack()
+  }
+
   render() {
     return (
       <View>
@@ -9,7 +19,9 @@ class AddDeck extends Component {
         <TextInput
           placeholder='Deck Title'
         />
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={this.addDeck}
+        >
           <Text>Create Deck</Text>
         </TouchableOpacity>
       </View>

@@ -25,6 +25,10 @@ class AddCard extends Component {
       questionText: '',
       answerText: '',
     })
+
+    const { navigate } = this.props.navigation
+
+    navigate('DeckContainer')
   }
 
   render() {

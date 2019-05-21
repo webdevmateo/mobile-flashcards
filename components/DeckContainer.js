@@ -3,19 +3,46 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import Deck from './Deck'
 
 class DeckContainer extends Component {
+  static navigationOptions = ({ navigation }) => {
+    //Todo: populate title dynamically
+    return {
+      title: 'Deck Title'
+    }
+  }
+
+  toQuiz = () => {
+    const { navigate } = this.props.navigation
+
+    navigate('Quiz')
+  }
+
+  deleteDeck = () => {
+    const { navigate } = this.props.navigation
+
+    navigate('Home')
+  }
+
   render() {
+    const { navigate } = this.props.navigation
+
     return (
-      <View>
+      <View style={{flex: 1, justifyContent: 'center'}}>
         <Deck />
-        <TouchableOpacity>
+        <View style={{flex: 1, alignItems: 'center'}}><TouchableOpacity
+          onPress={() => navigate('AddCard')}
+        >
           <Text>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={this.toQuiz}
+        >
           <Text>Start Quiz</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={this.deleteDeck}
+        >
           <Text>Delete Deck</Text>
-        </TouchableOpacity>
+        </TouchableOpacity></View>
       </View>
     )
   }

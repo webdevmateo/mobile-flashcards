@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 class Quiz extends Component {
+  static navigationOptions = ({ navigation }) => {
+      //Todo: populate title dynamically
+      return {
+        title: 'Quiz'
+      }
+    }
+
   render() {
     return (
       <View>
