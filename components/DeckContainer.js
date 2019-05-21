@@ -4,9 +4,10 @@ import Deck from './Deck'
 
 class DeckContainer extends Component {
   static navigationOptions = ({ navigation }) => {
-    //Todo: populate title dynamically
+    const title = navigation.getParam('title')
+
     return {
-      title: 'Deck Title'
+      title,
     }
   }
 
@@ -23,25 +24,27 @@ class DeckContainer extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation
+    const {navigate} = this.props.navigation
 
     return (
       <View style={{flex: 1, justifyContent: 'center'}}>
-        <View style={{flex: 1, alignItems: 'center'}}><TouchableOpacity
-          onPress={() => navigate('AddCard')}
-        >
-          <Text>Add Card</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={this.toQuiz}
-        >
-          <Text>Start Quiz</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={this.deleteDeck}
-        >
-          <Text>Delete Deck</Text>
-        </TouchableOpacity></View>
+        <View style={{flex: 1, alignItems: 'center'}}>
+          <TouchableOpacity
+            onPress={() => navigate('AddCard')}
+          >
+            <Text>Add Card</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.toQuiz}
+          >
+            <Text>Start Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.deleteDeck}
+          >
+            <Text>Delete Deck</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

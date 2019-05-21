@@ -8,7 +8,12 @@ class Deck extends Component {
 
     const { navigate } = this.props.navigation
 
-    navigate('DeckContainer')
+    const { deck } = this.props
+    const title = deck.title
+
+    navigate('DeckContainer', {
+      title,
+    })
   }
 
   render() {
@@ -28,7 +33,7 @@ class Deck extends Component {
   }
 }
 
-function mapStateToProps (decks, {title}) {
+function mapStateToProps (decks, { title }) {
   const deck = decks[title]
 
   return {

@@ -34,11 +34,12 @@ class ListDecks extends Component {
 
     return (
       <View style={{flex: 1}}>
-        {Object.keys(decks).map((deck) => {
-          return (
-            <Deck key={deck} title={deck} />
-          )
-        })}
+        {Object.keys(decks).map((deck) => (
+            <Deck
+              key={deck}
+              title={deck}
+            />
+        ))}
       </View>
 
     )
