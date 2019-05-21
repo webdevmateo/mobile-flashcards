@@ -1,6 +1,11 @@
+import {
+  GET_DECKS,
+  ADD_DECK,
+  REMOVE_DECK,
+  ADD_CARD_TO_DECK
+} from '../actions'
 
-
-function decks (state = {}, action) {
+export default function decks (state = {}, action) {
   switch (action.type) {
     case GET_DECKS:
       return {
@@ -16,7 +21,7 @@ function decks (state = {}, action) {
       const reduced = Object.keys(state).length > 0
         ? Object.keys(state).reduce((acc, key) => (
           key !== action.id
-            ? ...acc, key
+            ? {...acc, key}
             : acc
         ), {})
         : state

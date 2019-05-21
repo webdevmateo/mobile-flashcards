@@ -27,7 +27,6 @@ class DeckContainer extends Component {
 
     return (
       <View style={{flex: 1, justifyContent: 'center'}}>
-        <Deck />
         <View style={{flex: 1, alignItems: 'center'}}><TouchableOpacity
           onPress={() => navigate('AddCard')}
         >
