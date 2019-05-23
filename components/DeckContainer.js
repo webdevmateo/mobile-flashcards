@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import Deck from './Deck'
+import { removeDeck } from '../actions'
 
 class DeckContainer extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -19,7 +21,9 @@ class DeckContainer extends Component {
 
   deleteDeck = () => {
     const { navigate } = this.props.navigation
-
+    const { removeDeck } = this.props
+    const id = this.props.navigation.getParam('title')
+    removeDeck(id)
     navigate('Home')
   }
 
@@ -50,4 +54,4 @@ class DeckContainer extends Component {
   }
 }
 
-export default DeckContainer
+export default connect(null, { removeDeck })(DeckContainer)

@@ -18,14 +18,19 @@ export default function decks (state = {}, action) {
         ...action.deck
       }
     case REMOVE_DECK:
-      const reduced = Object.keys(state).length > 0
-        ? Object.keys(state).reduce((acc, key) => (
-          key !== action.id
-            ? {...acc, key}
-            : acc
-        ), {})
-        : state
-      return reduced
+      const reduced = Object.entries(state).reduce((acc, entry) => {
+        const key = entry[0]
+        const value = entry[1]
+
+        if (key !== action.id) {
+          return {...acc, [key]: value}
+        } else {
+          return acc
+        }
+      }, {})
+      return {
+        ...reduced
+      }
     case ADD_CARD_TO_DECK:
       return {
         ...state,

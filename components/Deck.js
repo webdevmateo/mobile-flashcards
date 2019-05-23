@@ -26,7 +26,7 @@ class Deck extends Component {
             onPress={this.onPress}
           >
             <Text>{deck.title}</Text>
-            <Text>{questions} cards</Text>
+            <Text>{questions && `${questions} cards`}</Text>
           </TouchableOpacity>
       </View>
     )
@@ -34,10 +34,10 @@ class Deck extends Component {
 }
 
 function mapStateToProps (decks, { title }) {
-  const deck = decks[title]
+  const deck = decks[title] ? decks[title] : null
 
   return {
-    deck,
+    deck
   }
 }
 
