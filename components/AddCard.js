@@ -3,6 +3,7 @@ import { AsyncStorage, View, Text, TouchableOpacity, StyleSheet} from 'react-nat
 import { connect } from 'react-redux'
 import TextInputComponent from './TextInputComponent'
 import { addCardToDeck } from '../actions'
+import { addCard } from '../utils/api'
 
 class AddCard extends Component {
 
@@ -34,7 +35,7 @@ class AddCard extends Component {
     addCardToDeck(title, card)
 
     //Update AsyncStorage
-    
+    addCard(title, card)
 
     this.setState({
       questionText: '',

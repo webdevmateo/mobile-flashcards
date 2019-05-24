@@ -7,10 +7,14 @@ export function fetchDecks () {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
 }
 
-export function submitEntry ({ entry, key }) {
-  return AsyncStorage.mergeItem(CALENDAR_STORAGE_KEY, JSON.stringify({
-    [key]: entry,
-  }))
+export function addCard (title, card) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+  .then((results) => {
+    const data = JSON.parse(results)
+    data[title].questions = data[title].questions.concat([card])
+
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
+  })
 }
 
 export function deleteDeck (key) {
