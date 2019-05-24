@@ -24,9 +24,10 @@ export function removeDeck (id) {
   }
 }
 
-export function addCardToDeck (card) {
+export function addCardToDeck (id, card) {
   return {
     type: ADD_CARD_TO_DECK,
+    id,
     card,
   }
 }

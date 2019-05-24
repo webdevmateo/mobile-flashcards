@@ -4,8 +4,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 class Quiz extends Component {
   static navigationOptions = ({ navigation }) => {
       //Todo: populate title dynamically
+      const title = `${navigation.getParam('title')} Quiz`
+
       return {
-        title: 'Quiz'
+        title,
       }
     }
 

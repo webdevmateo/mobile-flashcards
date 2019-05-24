@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from './Deck'
 import { removeDeck } from '../actions'
+import { deleteDeck } from '../utils/api'
 
 class DeckContainer extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -13,17 +14,33 @@ class DeckContainer extends Component {
     }
   }
 
+  toAddCard = () => {
+    const title = this.props.navigation.getParam('title')
+
+    const { navigate } = this.props.navigation
+    navigate('AddCard', {
+      title,
+    })
+  }
+
   toQuiz = () => {
+    const title = this.props.navigation.getParam('title')
     const { navigate } = this.props.navigation
 
-    navigate('Quiz')
+    navigate('Quiz', {
+      title,
+    })
   }
 
   deleteDeck = () => {
     const { navigate } = this.props.navigation
     const { removeDeck } = this.props
     const id = this.props.navigation.getParam('title')
+    //Update Redux
     removeDeck(id)
+    //Update AsyncStorage
+    deleteDeck(id)
+
     navigate('Home')
   }
 
@@ -34,7 +51,7 @@ class DeckContainer extends Component {
       <View style={{flex: 1, justifyContent: 'center'}}>
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity
-            onPress={() => navigate('AddCard')}
+            onPress={this.toAddCard}
           >
             <Text>Add Card</Text>
           </TouchableOpacity>
