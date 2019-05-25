@@ -6,7 +6,6 @@ import { addCardToDeck } from '../actions'
 import { addCard } from '../utils/api'
 
 class AddCard extends Component {
-
   state = {
     questionText: '',
     answerText: '',
@@ -26,25 +25,30 @@ class AddCard extends Component {
     const { navigate } = this.props.navigation
     const { deck, addCardToDeck } = this.props
     const title = deck.title
+    const { questionText, answerText } = this.state
     const card = {
-      question: this.state.questionText,
-      answer: this.state.answerText,
+      question: questionText,
+      answer: answerText,
     }
 
-    //Update Redux
-    addCardToDeck(title, card)
+    if (questionText !== '' && answerText !== '') {
+      //Update Redux
+      addCardToDeck(title, card)
 
-    //Update AsyncStorage
-    addCard(title, card)
+      //Update AsyncStorage
+      addCard(title, card)
 
-    this.setState({
-      questionText: '',
-      answerText: '',
-    })
+      this.setState({
+        questionText: '',
+        answerText: '',
+      })
 
-    navigate('DeckContainer', {
-      title,
-    })
+      navigate('DeckContainer', {
+        title,
+      })
+    } else {
+      alert('Please enter a question and an answer.')
+    }
   }
 
   render() {

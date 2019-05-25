@@ -5,6 +5,7 @@ import { withNavigation } from 'react-navigation'
 
 class Deck extends Component {
   onPress = () => {
+    //Todo: Add animation
 
     const { navigate } = this.props.navigation
 
