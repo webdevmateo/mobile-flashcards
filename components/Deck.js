@@ -18,8 +18,7 @@ class Deck extends Component {
   }
 
   render() {
-    const { deck } = this.props
-    const questions = deck.questions.length
+    const { deck, questions } = this.props
 
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -27,7 +26,7 @@ class Deck extends Component {
             onPress={this.onPress}
           >
             <Text>{deck.title}</Text>
-            <Text>{questions && `${questions} cards`}</Text>
+            <Text>{questions} cards</Text>
           </TouchableOpacity>
       </View>
     )
@@ -36,9 +35,10 @@ class Deck extends Component {
 
 function mapStateToProps (decks, { title }) {
   const deck = decks[title] ? decks[title] : null
-
+  const questions = deck ? deck.questions.length : 0
   return {
-    deck
+    deck,
+    questions,
   }
 }
 

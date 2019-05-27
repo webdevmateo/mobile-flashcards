@@ -7,12 +7,23 @@ export function fetchDecks () {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
 }
 
+export function addNewDeck (deck) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+  .then((results) => {
+    const data = JSON.parse(results)
+    const newData = {
+      ...data,
+      ...deck
+    }
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(newData))
+  })
+}
+
 export function addCard (title, card) {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
   .then((results) => {
     const data = JSON.parse(results)
     data[title].questions = data[title].questions.concat([card])
-
     AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
   })
 }

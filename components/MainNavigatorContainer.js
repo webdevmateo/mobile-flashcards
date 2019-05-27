@@ -29,9 +29,6 @@ const TabRouteConfigs = {
 }
 
 const TabNavigatorConfig = {
-  navigationOptions: {
-    header: null,
-  },
   tabBarOptions: {
     activeTintColor: Platform.OS === "ios"
       ? 'purple'

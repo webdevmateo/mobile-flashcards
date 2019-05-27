@@ -77,8 +77,17 @@ class Quiz extends Component {
   render() {
     const { deck, length } = this.props
     const { correct, currentIndex, currentQuestion, showAnswer, showScore } = this.state
-    const questionText = deck.questions[currentIndex].question
-    const answerText = deck.questions[currentIndex].answer
+    const questionText = length > 0 ? deck.questions[currentIndex].question : null
+    const answerText = length > 0 ? deck.questions[currentIndex].answer : null
+
+    if (length === 0) {
+      return (
+          <View>
+            <Text>This deck doesn't have any questions yet.  In order to take a quiz on this deck, please add some questions.
+            </Text>
+          </View>
+      )
+    }
 
     if (showScore === true) {
       return (
@@ -125,7 +134,9 @@ class Quiz extends Component {
 function mapStateToProps (decks, { navigation }) {
   const title = navigation.state.params.title
   const deck = decks[title]
-  const length = deck.questions.length
+  const length = deck.questions.length > 0
+    ? deck.questions.length
+    : 0
 
   return {
     title,

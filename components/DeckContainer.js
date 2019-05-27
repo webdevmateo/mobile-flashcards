@@ -41,7 +41,7 @@ class DeckContainer extends Component {
     //Update AsyncStorage
     deleteDeck(id)
 
-    navigate('Home')
+    navigate('ListDecks')
   }
 
   render() {
