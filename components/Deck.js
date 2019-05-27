@@ -1,34 +1,44 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { Animated, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 
 class Deck extends Component {
+  state = {
+    bounceValue: new Animated.Value(1)
+  }
+
   onPress = () => {
-    //Todo: Add animation
-
+    const { bounceValue } = this.state
     const { navigate } = this.props.navigation
-
     const { deck } = this.props
     const title = deck.title
 
-    navigate('DeckContainer', {
-      title,
-    })
+    Animated.sequence([
+      Animated.timing(bounceValue, { duration: 200, toValue: 1.25}),
+      Animated.spring(bounceValue, {toValue: 1, friction: 4})
+    ]).start()
+
+    setTimeout(() => {
+      navigate('DeckContainer', {
+        title,
+      })
+    }, 500)
   }
 
   render() {
+    const { bounceValue } = this.state
     const { deck, questions } = this.props
 
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Animated.View style={{flex: 1, justifyContent: 'center', alignItems: 'center', transform: [{scale: bounceValue}]}}>
           <TouchableOpacity
             onPress={this.onPress}
           >
             <Text>{deck.title}</Text>
             <Text>{questions} cards</Text>
           </TouchableOpacity>
-      </View>
+      </Animated.View>
     )
   }
 }
