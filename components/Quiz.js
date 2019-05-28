@@ -21,8 +21,6 @@ class Quiz extends Component {
     }
 
     showAnswer = () => {
-      const { length } = this.props
-      const { currentQuestion } = this.state
       const { showAnswer } = this.state
 
       this.setState({
@@ -31,25 +29,27 @@ class Quiz extends Component {
     }
 
     handleCorrect = () => {
-      const { length } = this.props
-      const arrayLength = length - 1
+      const { numberOfQuestions } = this.props
+      const maxArrayIndex = numberOfQuestions - 1
       const { currentQuestion } = this.state
 
       this.setState((state) => ({
         correct: state.correct + 1,
-        currentIndex: state.currentIndex === arrayLength ? state.currentIndex : state.currentIndex + 1,
+        currentIndex: state.currentIndex === maxArrayIndex ? state.currentIndex : state.currentIndex + 1,
         currentQuestion: state.currentQuestion + 1,
-        showScore: state.currentQuestion >= length ? true : false,
+        showScore: state.currentQuestion >= numberOfQuestions ? true : false,
         showAnswer: false,
       }))
     }
 
     handleIncorrect = () => {
-      const { length } = this.props
+      const { numberOfQuestions } = this.props
+      const maxArrayIndex = numberOfQuestions - 1
 
       this.setState((state) => ({
+        currentIndex: state.currentIndex === maxArrayIndex ? state.currentIndex : state.currentIndex + 1,
         currentQuestion: state.currentQuestion + 1,
-        showScore: state.currentQuestion >= length ? true : false,
+        showScore: state.currentQuestion >= numberOfQuestions ? true : false,
         showAnswer: false,
       }))
     }
@@ -75,14 +75,14 @@ class Quiz extends Component {
 
 
   render() {
-    const { deck, length } = this.props
+    const { deck, numberOfQuestions } = this.props
     const { correct, currentIndex, currentQuestion, showAnswer, showScore } = this.state
-    const questionText = length > 0 ? deck.questions[currentIndex].question : null
-    const answerText = length > 0 ? deck.questions[currentIndex].answer : null
+    const questionText = numberOfQuestions > 0 ? deck.questions[currentIndex].question : null
+    const answerText = numberOfQuestions > 0 ? deck.questions[currentIndex].answer : null
 
-    if (length === 0) {
+    if (numberOfQuestions === 0) {
       return (
-          <View>
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Text>This deck doesn't have any questions yet.  In order to take a quiz on this deck, please add some questions.
             </Text>
           </View>
@@ -91,8 +91,8 @@ class Quiz extends Component {
 
     if (showScore === true) {
       return (
-        <View>
-          <Text>Score: {correct <= 0 ? 0 : correct}/{length}</Text>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text>Score: {correct <= 0 ? 0 : correct}/{numberOfQuestions}</Text>
           <TouchableOpacity
             onPress={this.restart}
           >
@@ -108,8 +108,8 @@ class Quiz extends Component {
     }
 
     return (
-      <View style={{flex: 1, alignItems: 'center'}}>
-        <Text>{currentQuestion <= length ? currentQuestion : length}/{length}</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>{currentQuestion <= numberOfQuestions ? currentQuestion : numberOfQuestions}/{numberOfQuestions}</Text>
         <Text>{questionText}</Text>
         <TouchableOpacity
           onPress={this.showAnswer}
@@ -134,14 +134,14 @@ class Quiz extends Component {
 function mapStateToProps (decks, { navigation }) {
   const title = navigation.state.params.title
   const deck = decks[title]
-  const length = deck.questions.length > 0
+  const numberOfQuestions = deck.questions.length > 0
     ? deck.questions.length
     : 0
 
   return {
     title,
     deck,
-    length,
+    numberOfQuestions,
   }
 }
 

@@ -48,8 +48,8 @@ class DeckContainer extends Component {
     const {navigate} = this.props.navigation
 
     return (
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        <View style={{flex: 1, alignItems: 'center'}}>
+      <View style={{flex: 1}}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <TouchableOpacity
             onPress={this.toAddCard}
           >

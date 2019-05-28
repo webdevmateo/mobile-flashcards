@@ -15,7 +15,7 @@ class Deck extends Component {
     const title = deck.title
 
     Animated.sequence([
-      Animated.timing(bounceValue, { duration: 200, toValue: 1.25}),
+      Animated.timing(bounceValue, { duration: 200, toValue: 1.5}),
       Animated.spring(bounceValue, {toValue: 1, friction: 4})
     ]).start()
 
@@ -23,7 +23,7 @@ class Deck extends Component {
       navigate('DeckContainer', {
         title,
       })
-    }, 500)
+    }, 350)
   }
 
   render() {
