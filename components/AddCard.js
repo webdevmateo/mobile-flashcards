@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { AsyncStorage, View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import { connect } from 'react-redux'
 import TextInputComponent from './TextInputComponent'
-import { addCardToDeck } from '../actions'
-import { addCard } from '../utils/api'
+import { addCard } from '../actions'
+import { addCardToDeck } from '../utils/api'
 
 class AddCard extends Component {
   state = {
@@ -23,7 +23,7 @@ class AddCard extends Component {
 
   submit = () => {
     const { navigate } = this.props.navigation
-    const { deck, addCardToDeck } = this.props
+    const { deck, addCard } = this.props
     const title = deck.title
     const { questionText, answerText } = this.state
     const card = {
@@ -33,10 +33,10 @@ class AddCard extends Component {
 
     if (questionText !== '' && answerText !== '') {
       //Update Redux
-      addCardToDeck(title, card)
+      addCard(title, card)
 
       //Update AsyncStorage
-      addCard(title, card)
+      addCardToDeck(title, card)
 
       this.setState({
         questionText: '',
@@ -86,4 +86,4 @@ function mapStateToProps (decks, { navigation }) {
   }
 }
 
-export default connect(mapStateToProps, { addCardToDeck })(AddCard)
+export default connect(mapStateToProps, { addCard })(AddCard)

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from './Deck'
-import { fetchDecks } from '../utils/api'
-import { getDecks } from '../actions'
+import { getDecks } from '../utils/api'
+import { addDecks } from '../actions'
 import { AppLoading } from 'expo'
 
 class ListDecks extends Component {
@@ -12,13 +12,13 @@ class ListDecks extends Component {
   }
 
   componentDidMount() {
-    const { getDecks } = this.props
+    const { addDecks } = this.props
 
     //fetch decks from AsyncStorage
-    fetchDecks()
+    getDecks()
     .then((decks) =>
       //add decks to Redux store
-      getDecks(JSON.parse(decks)))
+      addDecks(JSON.parse(decks)))
     .then(() => this.setState({
       ready: true,
     }))
@@ -52,4 +52,4 @@ function mapStateToProps (decks) {
   }
 }
 
-export default connect(mapStateToProps, { getDecks })(ListDecks)
+export default connect(mapStateToProps, { addDecks })(ListDecks)

@@ -1,11 +1,11 @@
-export const GET_DECKS = 'GET_DECKS'
+export const ADD_DECKS = 'ADD_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const REMOVE_DECK = 'REMOVE_DECK'
-export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK'
+export const ADD_CARD = 'ADD_CARD'
 
-export function getDecks (decks) {
+export function addDecks (decks) {
   return {
-    type: GET_DECKS,
+    type: ADD_DECKS,
     decks,
   }
 }
@@ -24,9 +24,9 @@ export function removeDeck (id) {
   }
 }
 
-export function addCardToDeck (id, card) {
+export function addCard (id, card) {
   return {
-    type: ADD_CARD_TO_DECK,
+    type: ADD_CARD,
     id,
     card,
   }

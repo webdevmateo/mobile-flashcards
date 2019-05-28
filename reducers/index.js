@@ -1,13 +1,13 @@
 import {
-  GET_DECKS,
+  ADD_DECKS,
   ADD_DECK,
   REMOVE_DECK,
-  ADD_CARD_TO_DECK
+  ADD_CARD,
 } from '../actions'
 
 export default function decks (state = {}, action) {
   switch (action.type) {
-    case GET_DECKS:
+    case ADD_DECKS:
       return {
         ...state,
         ...action.decks
@@ -31,7 +31,7 @@ export default function decks (state = {}, action) {
       return {
         ...reduced
       }
-    case ADD_CARD_TO_DECK:
+    case ADD_CARD:
       return {
         ...state,
         [action.id]: {
