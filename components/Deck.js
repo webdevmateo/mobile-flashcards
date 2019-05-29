@@ -28,7 +28,7 @@ class Deck extends Component {
 
   render() {
     const { bounceValue } = this.state
-    const { deck, questions } = this.props
+    const { deck, numberOfCards } = this.props
 
     return (
       <Animated.View style={{flex: 1, justifyContent: 'center', alignItems: 'center', transform: [{scale: bounceValue}]}}>
@@ -36,7 +36,7 @@ class Deck extends Component {
             onPress={this.onPress}
           >
             <Text>{deck.title}</Text>
-            <Text>{questions} cards</Text>
+            <Text>{numberOfCards} {numberOfCards === 1 ? 'card' : 'cards'}</Text>
           </TouchableOpacity>
       </Animated.View>
     )
@@ -45,10 +45,10 @@ class Deck extends Component {
 
 function mapStateToProps (decks, { title }) {
   const deck = decks[title] ? decks[title] : null
-  const questions = deck ? deck.questions.length : 0
+  const numberOfCards = deck ? deck.questions.length : 0
   return {
     deck,
-    questions,
+    numberOfCards,
   }
 }
 

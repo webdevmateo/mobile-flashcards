@@ -6,8 +6,13 @@ import reducer from './reducers'
 import middleware from './middleware'
 import StatusBarComponent from './components/StatusBarComponent'
 import MainNavigatorContainer from './components/MainNavigatorContainer'
+import { setLocalNotification } from './utils/helpers'
 
 class App extends Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     const store = createStore(reducer, middleware)
 

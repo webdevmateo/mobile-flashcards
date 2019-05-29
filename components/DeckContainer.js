@@ -46,10 +46,15 @@ class DeckContainer extends Component {
 
   render() {
     const {navigate} = this.props.navigation
+    const title = this.props.navigation.getParam('title')
+    const { numberOfCards } = this.props
+
 
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Text>{title}</Text>
+          <Text>{numberOfCards} {numberOfCards === 1 ? 'card' : 'cards'}</Text>
           <TouchableOpacity
             onPress={this.toAddCard}
           >
@@ -71,4 +76,14 @@ class DeckContainer extends Component {
   }
 }
 
-export default connect(null, { removeDeck })(DeckContainer)
+function mapStateToProps (decks, { navigation } ) {
+  const title = navigation.state.params.title
+  const deck = decks[title]
+  const numberOfCards = deck ? deck.questions.length : 0
+
+  return {
+    numberOfCards,
+  }
+}
+
+export default connect(mapStateToProps, { removeDeck })(DeckContainer)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
   state = {
@@ -90,6 +91,9 @@ class Quiz extends Component {
     }
 
     if (showScore === true) {
+      clearLocalNotification()
+      .then(setLocalNotification)
+      
       return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Text>Score: {correct <= 0 ? 0 : correct}/{numberOfQuestions}</Text>

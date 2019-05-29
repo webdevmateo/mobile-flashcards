@@ -1,7 +1,7 @@
 # Mobile Flashcards
 ___
 
-This a mobile flashcards application built using React Native.  It was the third and final project of the [Udacity React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019).
+This a mobile flashcards application built using React Native.  It was the third and final project of the [Udacity React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019).  The app has been tested on both iOS and Android device simulators.
 
 # How to run this application locally
 ___
@@ -17,7 +17,7 @@ In order to run this application on your local computer, do the following:
           * `yarn install`
           * `expo start`
      - Visit the site in your browser at `http://localhost:19002/`.
-     - Please note that you will need to have access to iOS and Android simulators in order to view the application on your computer.
+     - Please note that you will need to have access to iOS and/or Android simulators in order to view the application on your computer.
 5. You can also download and view the app on your phone by using the Expo app:
     - [iOS](https://itunes.apple.com/us/app/expo-client/id982107779)
     - [Android](https://play.google.com/store/apps/details?id=host.exp.exponent)
