@@ -15,7 +15,7 @@ In order to run this application on your local computer, do the following:
      - Launch a command line tool, such as Terminal.
      - Navigate to the project's root directory, and run the following commands:
           * `yarn install`
-          * `expo start`
+          * `yarn start` or `expo start`
      - Visit the site in your browser at `http://localhost:19002/`.
      - Please note that you will need to have access to iOS and/or Android simulators in order to view the application on your computer.
 5. You can also download and view the app on your phone by using the Expo app:
