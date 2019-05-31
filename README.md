@@ -27,3 +27,12 @@ ___
 
 This project was created using the following dependencies:
 * [Create React Native App](https://github.com/react-community/create-react-native-app)
+* [React Navigation](https://reactnavigation.org/)
+* [Redux](https://redux.js.org/)
+* [React Redux](https://react-redux.js.org/)
+* [Styled Components](https://github.com/styled-components/styled-components)
+
+# License
+___
+
+* [MIT License](LICENSE.txt)
