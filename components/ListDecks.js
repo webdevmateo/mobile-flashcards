@@ -5,6 +5,12 @@ import Deck from './Deck'
 import { getDecks } from '../utils/api'
 import { addDecks } from '../actions'
 import { AppLoading } from 'expo'
+import styled from 'styled-components/native'
+
+const ContainerView = styled.View`
+  flex: 1;
+  background-color: #DFDBE5;
+`
 
 class ListDecks extends Component {
   state = {
@@ -33,15 +39,14 @@ class ListDecks extends Component {
     }
 
     return (
-      <View style={{flex: 1}}>
+      <ContainerView>
         {Object.keys(decks).map((deck) => (
             <Deck
               key={deck}
               title={deck}
             />
         ))}
-      </View>
-
+      </ContainerView>
     )
   }
 }

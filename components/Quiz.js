@@ -2,6 +2,109 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import styled from 'styled-components/native'
+
+const ContainerView = styled.View`
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #DFDBE5;
+`
+
+const ProgressText = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  align-self: flex-start;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 125px;
+`
+
+const QuestionText = styled.Text`
+  font-size: 26px;
+  font-weight: bold;
+`
+
+const AnswerBtn = styled.Text`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  height: 200px;
+  color: #B32526;
+`
+
+const AnswerText = styled.Text`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  height: 200px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #1A1A1B;
+`
+
+const CorrectBtn = styled.TouchableOpacity`
+  width: 300px;
+  height: 37px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  background-color: #197E1C;
+`
+
+const ButtonText = styled.Text`
+  color: #fff;
+`
+
+const IncorrectBtn = styled.TouchableOpacity`
+  background-color: #CC2A2B;
+  width: 300px;
+  height: 37px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+`
+
+const RestartBtn = styled.TouchableOpacity`
+  width: 300px;
+  height: 37px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 1px solid #000;
+  margin-bottom: 15px;
+`
+
+const ReturnBtn = styled.TouchableOpacity`
+  width: 300px;
+  height: 37px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  background-color: #000;
+`
+
+const ReturnBtnText = styled.Text`
+  color: #fff;
+`
+
+const NoQuestionView = styled.View`
+  flex: 1;
+  justifyContent: center;
+  alignItems: center;
+  background-color: #DFDBE5;
+`
+
+const NoQuestionText = styled.Text`
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+`
 
 class Quiz extends Component {
   state = {
@@ -10,6 +113,7 @@ class Quiz extends Component {
     currentQuestion: 1,
     showAnswer: false,
     showScore: false,
+    hasTakenOneQuiz: false,
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -74,7 +178,6 @@ class Quiz extends Component {
       })
     }
 
-
   render() {
     const { deck, numberOfQuestions } = this.props
     const { correct, currentIndex, currentQuestion, showAnswer, showScore } = this.state
@@ -83,54 +186,54 @@ class Quiz extends Component {
 
     if (numberOfQuestions === 0) {
       return (
-          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>This deck doesn't have any questions yet.  In order to take a quiz on this deck, please add some questions.
-            </Text>
-          </View>
+          <NoQuestionView>
+            <NoQuestionText>This deck doesn't have any questions. Please add some questions.
+            </NoQuestionText>
+          </NoQuestionView>
       )
     }
 
     if (showScore === true) {
       clearLocalNotification()
       .then(setLocalNotification)
-      
+
       return (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <Text>Score: {correct <= 0 ? 0 : correct}/{numberOfQuestions}</Text>
-          <TouchableOpacity
+        <ContainerView>
+          <ProgressText>Score: {correct <= 0 ? 0 : correct}/{numberOfQuestions}</ProgressText>
+          <RestartBtn
             onPress={this.restart}
           >
             <Text>Restart Quiz</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </RestartBtn>
+          <ReturnBtn
             onPress={this.toDeckContainer}
           >
-            <Text>Back to Deck</Text>
-          </TouchableOpacity>
-        </View>
+            <ReturnBtnText>Back to Deck</ReturnBtnText>
+          </ReturnBtn>
+        </ContainerView>
       )
     }
 
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>{currentQuestion <= numberOfQuestions ? currentQuestion : numberOfQuestions}/{numberOfQuestions}</Text>
-        <Text>{questionText}</Text>
+      <ContainerView>
+        <ProgressText>Progress: {currentQuestion <= numberOfQuestions ? currentQuestion : numberOfQuestions}/{numberOfQuestions}</ProgressText>
+        <QuestionText>{questionText}</QuestionText>
         <TouchableOpacity
           onPress={this.showAnswer}
         >
-          <Text>{showAnswer === false ? 'Answer' : answerText}</Text>
+          {showAnswer === false ? <AnswerBtn>Answer</AnswerBtn> : <AnswerText>{answerText}</AnswerText>}
         </TouchableOpacity>
-        <TouchableOpacity
+        <CorrectBtn
           onPress={this.handleCorrect}
         >
-          <Text>Correct</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+          <ButtonText>Correct</ButtonText>
+        </CorrectBtn>
+        <IncorrectBtn
           onPress={this.handleIncorrect}
         >
-          <Text>Incorrect</Text>
-        </TouchableOpacity>
-      </View>
+          <ButtonText>Incorrect</ButtonText>
+        </IncorrectBtn>
+      </ContainerView>
     )
   }
 }

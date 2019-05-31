@@ -4,6 +4,14 @@ import { connect } from 'react-redux'
 import TextInputComponent from './TextInputComponent'
 import { addCard } from '../actions'
 import { addCardToDeck } from '../utils/api'
+import styled from 'styled-components/native'
+
+const ContainerView = styled.View`
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #DFDBE5;
+`
 
 class AddCard extends Component {
   state = {
@@ -53,28 +61,60 @@ class AddCard extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <ContainerView>
         <TextInputComponent
           id='question'
           placeholder='Question'
+          placeholderTextColor='#969696'
           value={this.state.questionText}
           onChangeText={this.handleChange}
+          style={styles.input}
         />
         <TextInputComponent
           id='Answer'
           placeholder='Answer'
+          placeholderTextColor='#969696'
           value={this.state.answerText}
           onChangeText={this.handleChange}
+          style={[styles.input, {marginTop: 0}]}
         />
         <TouchableOpacity
           onPress={this.submit}
+          style={styles.submit}
         >
-          <Text>Submit</Text>
+          <Text style={styles.text}>Submit</Text>
         </TouchableOpacity>
-      </View>
+      </ContainerView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  input: {
+    marginTop: 50,
+    marginBottom: 15,
+    paddingLeft: 5,
+    width: 325,
+    height: 37,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 3,
+    color: 'black',
+    backgroundColor: '#fff'
+  },
+  submit: {
+    marginTop: 250,
+    width: 250,
+    height: 37,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
+    borderRadius: 3,
+  },
+  text: {
+    color: '#fff',
+  }
+})
 
 function mapStateToProps (decks, { navigation }) {
 

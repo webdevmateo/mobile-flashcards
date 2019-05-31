@@ -2,6 +2,24 @@ import React, { Component } from 'react'
 import { Animated, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
+import styled from 'styled-components/native'
+
+const DeckBtn = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+`
+
+const TitleText = styled.Text`
+  font-size: 26px;
+  font-weight: bold;
+`
+
+const CardsText = styled.Text`
+  margin-top: 7px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #7E7B85;
+`
 
 class Deck extends Component {
   state = {
@@ -31,17 +49,26 @@ class Deck extends Component {
     const { deck, numberOfCards } = this.props
 
     return (
-      <Animated.View style={{flex: 1, justifyContent: 'center', alignItems: 'center', transform: [{scale: bounceValue}]}}>
-          <TouchableOpacity
+      <Animated.View style={[styles.container, {transform: [{scale: bounceValue}]}]}>
+          <DeckBtn
             onPress={this.onPress}
           >
-            <Text>{deck.title}</Text>
-            <Text>{numberOfCards} {numberOfCards === 1 ? 'card' : 'cards'}</Text>
-          </TouchableOpacity>
+            <TitleText>{deck.title}</TitleText>
+            <CardsText>{numberOfCards} {numberOfCards === 1 ? 'card' : 'cards'}</CardsText>
+          </DeckBtn>
       </Animated.View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  }
+})
 
 function mapStateToProps (decks, { title }) {
   const deck = decks[title] ? decks[title] : null

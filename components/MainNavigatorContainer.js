@@ -9,14 +9,14 @@ import {
   createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer,
   createStackNavigator
 } from 'react-navigation'
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
 
 const TabRouteConfigs = {
   ListDecks: {
     screen: ListDecks,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-outline' size={30} color={tintColor} />
     }
   },
   AddDeck: {
@@ -31,13 +31,13 @@ const TabRouteConfigs = {
 const TabNavigatorConfig = {
   tabBarOptions: {
     activeTintColor: Platform.OS === "ios"
-      ? 'purple'
-      : 'white',
+      ? '#261E5F'
+      : '#fff',
     style: {
       height: 56,
       backgroundColor: Platform.OS === "ios"
-        ? 'white'
-        : 'purple',
+        ? '#E6E6E6'
+        : '#261E5F',
       shadowColor: "rgba(0, 0, 0, 0.24)",
       shadowOffset: {
         width: 0,
@@ -66,9 +66,9 @@ const MainNavigator = createStackNavigator({
   DeckContainer: {
     screen: DeckContainer,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: '#fff',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#261E5F',
       }
     }
   },
@@ -76,18 +76,18 @@ const MainNavigator = createStackNavigator({
     screen: AddCard,
     navigationOptions: {
       title: 'Add Card',
-      headerTintColor: 'white',
+      headerTintColor: '#fff',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#261E5F',
       }
     }
   },
   Quiz: {
     screen: Quiz,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: '#fff',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#261E5F',
       }
     }
   }

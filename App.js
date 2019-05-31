@@ -7,6 +7,11 @@ import middleware from './middleware'
 import StatusBarComponent from './components/StatusBarComponent'
 import MainNavigatorContainer from './components/MainNavigatorContainer'
 import { setLocalNotification } from './utils/helpers'
+import styled from 'styled-components/native'
+
+const ContainerView = styled.View`
+  flex: 1;
+`
 
 class App extends Component {
   componentDidMount() {
@@ -18,22 +23,16 @@ class App extends Component {
 
     return (
       <Provider store={store}>
-        <View style={styles.container}>
+        <ContainerView>
           <StatusBarComponent
-            backgroundColor='purple'
+            backgroundColor='#261E5F'
             barStyle='light-content'
           />
           <MainNavigatorContainer />
-        </View>
+        </ContainerView>
       </Provider>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-})
 
 export default App
