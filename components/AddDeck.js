@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { Platform, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 import { addNewDeck } from '../utils/api'
@@ -29,8 +29,18 @@ const TitleInput = styled.TextInput`
   margin-bottom: 10px;
 `
 
-const CreateDeckBtn = styled.TouchableOpacity`
-  margin-top: 325px;
+const CreateDeckBtn = Platform.OS === 'ios'
+? styled.TouchableOpacity`
+  margin-top: 300px;
+  height: 37px;
+  width: 250px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  background-color: #000;
+`
+: styled.TouchableOpacity`
+  margin-top: 200px;
   height: 37px;
   width: 250px;
   justify-content: center;

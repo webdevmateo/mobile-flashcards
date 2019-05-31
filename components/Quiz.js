@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Platform, View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import styled from 'styled-components/native'
@@ -23,26 +23,50 @@ const ProgressText = styled.Text`
 const QuestionText = styled.Text`
   font-size: 26px;
   font-weight: bold;
+  text-align: center;
 `
 
-const AnswerBtn = styled.Text`
-  margin-top: 20px;
-  margin-bottom: 15px;
-  font-size: 18px;
-  font-weight: bold;
-  height: 200px;
-  color: #B32526;
-`
+const AnswerBtn = Platform.OS === 'ios'
+  ? styled.Text`
+    margin-top: 20px;
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    height: 200px;
+    color: #B32526;
+  `
+  : styled.Text`
+    margin-top: 20px;
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    height: 100px;
+    color: #B32526;
+  `
 
-const AnswerText = styled.Text`
-  margin-top: 20px;
-  margin-bottom: 15px;
-  font-size: 18px;
-  height: 200px;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: #1A1A1B;
-`
+const AnswerText = Platform.OS === 'ios'
+  ? styled.Text`
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    height: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #1A1A1B;
+  `
+  : styled.Text`
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #1A1A1B;
+  `
 
 const CorrectBtn = styled.TouchableOpacity`
   width: 300px;
@@ -187,7 +211,7 @@ class Quiz extends Component {
     if (numberOfQuestions === 0) {
       return (
           <NoQuestionView>
-            <NoQuestionText>This deck doesn't have any questions. Please add some questions.
+            <NoQuestionText>This deck doesn't have any questions. In order to take a quiz, please add some questions.
             </NoQuestionText>
           </NoQuestionView>
       )
