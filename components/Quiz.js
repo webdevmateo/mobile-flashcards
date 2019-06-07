@@ -50,6 +50,7 @@ const AnswerBtn = Platform.OS === 'ios'
 
 const AnswerText = Platform.OS === 'ios'
   ? styled.Text`
+    text-align: center;
     margin-top: 20px;
     margin-bottom: 15px;
     font-size: 18px;
@@ -59,6 +60,7 @@ const AnswerText = Platform.OS === 'ios'
     color: #1A1A1B;
   `
   : styled.Text`
+    text-align: center;
     margin-top: 20px;
     margin-bottom: 15px;
     font-size: 18px;
