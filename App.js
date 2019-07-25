@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -13,7 +13,7 @@ const ContainerView = styled.View`
   flex: 1;
 `
 
-class App extends Component {
+class App extends React.Component {
   componentDidMount() {
     setLocalNotification()
   }
