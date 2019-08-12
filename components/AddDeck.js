@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Platform, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { Platform, KeyboardAvoidingView, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 import { addNewDeck } from '../utils/api'
 import styled from 'styled-components/native'
 
-const ContainerView = styled.View`
+const ContainerView = styled.KeyboardAvoidingView`
   flex: 1;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background-color: #DFDBE5;
 `
@@ -26,12 +26,11 @@ const TitleInput = styled.TextInput`
   border: 1px solid black;
   border-radius: 3px;
   padding-left: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
 `
 
 const CreateDeckBtn = Platform.OS === 'ios'
 ? styled.TouchableOpacity`
-  margin-top: 300px;
   height: 37px;
   width: 250px;
   justify-content: center;
@@ -40,7 +39,6 @@ const CreateDeckBtn = Platform.OS === 'ios'
   background-color: #000;
 `
 : styled.TouchableOpacity`
-  margin-top: 200px;
   height: 37px;
   width: 250px;
   justify-content: center;
@@ -99,9 +97,17 @@ class AddDeck extends Component {
   }
 
   render() {
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 0 : 165
+
     return (
-      <ContainerView>
-        <TitleText>What is the title of your new deck?</TitleText>
+      <ContainerView
+      behavior='padding'
+      enabled
+      keyboardVerticalOffset={keyboardVerticalOffset}
+      >
+        <TitleText>
+          What is the title of your new deck?
+        </TitleText>
         <TitleInput
           placeholder='Deck Title'
           value={this.state.title}
